@@ -1,17 +1,3 @@
-import os
-from flask import Flask, render_template, request, redirect, url_for, flash, session, send_file, send_from_directory
-import openpyxl
-import re
-import xml.etree.ElementTree as ET
-import pandas as pd
-from datetime import datetime, timedelta
-from io import BytesIO
-from reportlab.lib.pagesizes import landscape, A4
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer
-from reportlab.lib import colors
-from reportlab.lib.units import inch
-import requests
-
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.permanent_session_lifetime = timedelta(minutes=30)
@@ -25,12 +11,11 @@ REPO_BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 app.config['UPLOAD_FOLDER'] = os.path.join(REPO_BASE_PATH, 'static')
 
 # Ruta predeterminada del archivo Excel
-archivo_excel_path = os.path.join(os.getcwd(), "base de datos.xlsx")
+archivo_excel_path = os.path.join(REPO_BASE_PATH, "base de datos.xlsx")
 
 @app.route('/static/<path:filename>')
 def static_files(filename):
     return send_from_directory(os.path.join(REPO_BASE_PATH, 'static'), filename)
-
 
 @app.route('/')
 def index():
