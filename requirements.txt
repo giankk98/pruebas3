@@ -1,0 +1,6 @@
+Flask
+openpyxl
+pandas
+requests
+reportlab
+python-dotenv
